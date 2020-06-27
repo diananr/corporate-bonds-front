@@ -1,1 +1,28 @@
 @import "../../../../../assets/styles/1-settings/colors.scss";
+
+.header{
+    height: 80px;
+    padding: 0 20px;
+
+    ul{
+        align-items: center;
+        display: flex;
+        margin: 0;
+
+        li{
+            margin: 0 20px;
+            &:last-child{
+                margin: 0;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.hero{
+    &_content{
+        div{
+            margin: 20px 0;
+        }
+    }
+}
