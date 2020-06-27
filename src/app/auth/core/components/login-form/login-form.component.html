@@ -1,0 +1,29 @@
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="loginFG" (ngSubmit)="onLogin()" class="login-form">
+    <nz-form-item class="login-form__item">
+        <nz-form-label nzRequired nzFor="email">Correo electrónico</nz-form-label>
+        <nz-form-control>
+            <nz-input-group>
+                <input type="text" nz-input formControlName="email" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="login-form__item">
+        <nz-form-label nzRequired nzFor="password">Contraseña</nz-form-label>
+        <nz-form-control>
+            <nz-input-group>
+                <input type="password" nz-input formControlName="password"/>
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="login-form__item text-center">
+        <nz-form-control>
+            <button nz-button [nzType]="'primary'" class="login-form__button">
+                <span *ngIf="!loading">Iniciar Sesión</span>
+            </button>
+            <br>
+            <span>
+                ¿No tienes una cuenta? <a routerLink="/auth/signup">Regístrate</a>
+            </span>
+        </nz-form-control>
+    </nz-form-item>
+</form>

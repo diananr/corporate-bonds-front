@@ -1,0 +1,11 @@
+.signup-form{
+    &__item{
+        margin-bottom: 16px;
+        p{
+        text-align: justify;
+        }
+    }
+    &__button{
+        width: 100%;
+    }
+}

@@ -1,0 +1,33 @@
+$sidebar-width: 200px;
+.main-section{
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    &__sidebar{
+        width: $sidebar-width;
+    }
+
+    &__content{
+		background-color: #FAFBFD;
+		padding: 20px 30px;
+        width: calc(100% - #{$sidebar-width});
+    }
+}
+
+@media screen and (max-width: 520px){
+	.main-section{
+		flex-direction: column;
+
+		&__sidebar{
+			width: 100%;
+			padding-top: 10px;
+		}
+
+		&__content{
+			width: 100%;
+			padding-top: 10px;
+		}
+	}
+}

@@ -1,0 +1,8 @@
+a{
+    color: $color-accent;
+    text-decoration: none;
+    &, &:active, &:visited, &:active, &:focus{
+        text-decoration: none;
+        outline: none;
+    }
+}

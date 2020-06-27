@@ -1,0 +1,20 @@
+<form nz-form [nzLayout]="'vertical'" [formGroup]="materialFG"
+	(ngSubmit)="onSubmit()">
+	<nz-form-item>
+		<nz-form-label>Nombre</nz-form-label>
+		<nz-form-control nzErrorTip="Please input material name">
+			<input nz-input formControlName="name"/>
+		</nz-form-control>
+	</nz-form-item>
+	<nz-form-item>
+		<nz-form-control class="text-right">
+			<button type="button" nz-button [nzType]="'default'"
+				(click)="cancelRequest()" class="margin-right">Cancelar</button>
+			<button type="submit" nz-button [nzType]="'primary'">
+				<loading *ngIf="loading"></loading>
+				<span *ngIf="method == 'create' && !loading">Nueva material</span>
+				<span *ngIf="method == 'update' && !loading">Editar material</span>
+			</button>
+		</nz-form-control>
+	</nz-form-item>
+</form>

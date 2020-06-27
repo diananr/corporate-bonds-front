@@ -1,0 +1,37 @@
+<form nz-form [nzLayout]="'vertical'" [formGroup]="saleFG" (ngSubmit)="onSubmit()">
+	<nz-form-item>
+		<nz-form-label>Nombre</nz-form-label>
+		<nz-form-control nzErrorTip="Please input material name">
+			<input nz-input formControlName="name"/>
+		</nz-form-control>
+	</nz-form-item>
+	<nz-form-item>
+		<nz-form-label>Price</nz-form-label>
+		<nz-form-control nzErrorTip="Please input material name">
+			<input nz-input formControlName="price"/>
+		</nz-form-control>
+	</nz-form-item>
+	<nz-form-item>
+		<nz-form-label>Stock</nz-form-label>
+		<nz-form-control nzErrorTip="Please input material name">
+			<nz-input-number formControlName="stock" [nzMin]="1" [nzStep]="1"></nz-input-number>
+		</nz-form-control>
+	</nz-form-item>
+	<nz-form-item>
+		<nz-form-label>Link</nz-form-label>
+		<nz-form-control nzErrorTip="Please input material name">
+			<input nz-input formControlName="link"/>
+		</nz-form-control>
+	</nz-form-item>
+	<nz-form-item>
+		<nz-form-control class="text-right">
+			<button type="button" nz-button [nzType]="'default'"
+				(click)="cancelRequest()" class="margin-right">Cancelar</button>
+			<button type="submit" nz-button [nzType]="'primary'">
+				<loading *ngIf="loading"></loading>
+				<span *ngIf="method == 'create' && !loading">Nueva oferta</span>
+				<span *ngIf="method == 'update' && !loading">Editar oferta</span>
+			</button>
+		</nz-form-control>
+	</nz-form-item>
+</form>

@@ -1,0 +1,47 @@
+.sidebar{
+	text-align: center;
+    padding-top: 25px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+
+	&__avatar{
+		background-color: black;
+        border-radius: 50%;
+        height: 100px;
+        margin: 0 auto 30px;
+        width: 100px;
+        overflow: hidden;
+        position: relative;
+	}
+
+	&__nav{
+        li{
+            padding: 10px 0;
+            &.active{
+                a{
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px){
+	.sidebar{
+		width: 90%;
+		margin: auto;
+		float: unset;
+
+		&__avatar{
+			display: none;
+		}
+
+		&__nav{
+            li{
+                padding: 8px;
+                display: inline-block;
+            }
+        }
+	}
+}

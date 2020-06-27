@@ -1,0 +1,38 @@
+<div>
+	<div class="flex-row-layout jc-space-between">
+		<div></div>
+		<div>
+			<button nz-button [nzType]="'default'" (click)="showModal()">Nueva</button>
+		</div>
+	</div>
+	<div>
+		<nz-table #saleTable nzSize="middle" [nzData]="sales" [nzLoading]="loading">
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Peso</th>
+					<th>Total</th>
+					<th>Detalle</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let data of saleTable.data">
+					<td>{{data.type}}</td>
+					<td>{{data.weight}}</td>
+					<td>{{data.total}}</td>
+					<td>
+						<button nzSize="small" nz-button nzTrigger="click">
+							<span>Ver detalle</span>
+						</button>
+					</td>
+					<td>{{data.status}}</td>
+				</tr>
+			</tbody>
+		</nz-table>
+	</div>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Nueva oferta" [nzFooter]="null"
+	(nzOnCancel)="hideModal()">
+	<sale-form [method]="method.CREATE"></sale-form>
+</nz-modal>

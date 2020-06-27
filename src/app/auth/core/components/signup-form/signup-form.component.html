@@ -1,0 +1,43 @@
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="signupFG" (ngSubmit)="onSignup()" class="signup-form">
+    <nz-form-item class="signup-form__item">
+        <nz-form-label nzRequired nzFor="name">Nombres</nz-form-label>
+        <nz-form-control>
+        <nz-input-group>
+            <input type="text" nz-input formControlName="name" />
+        </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="signup-form__item">
+        <nz-form-label nzRequired nzFor="lastName">Apellidos</nz-form-label>
+        <nz-form-control>
+        <nz-input-group>
+            <input type="text" nz-input formControlName="lastName" />
+        </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="signup-form__item">
+        <nz-form-label nzRequired nzFor="email">Correo electrónico</nz-form-label>
+        <nz-form-control>
+        <nz-input-group>
+            <input type="text" nz-input formControlName="email" />
+        </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="signup-form__item">
+        <div>
+        <nz-form-label nzRequired nzFor="password">Contraseña</nz-form-label>
+        </div>
+        <nz-form-control>
+        <nz-input-group>
+            <input type="password" nz-input formControlName="password"/>
+        </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="signup-form__item">
+        <nz-form-control>
+        <button nz-button [nzType]="'primary'" class="signup-form__button">
+            <span *ngIf="!loading">Registrarme</span>
+        </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
