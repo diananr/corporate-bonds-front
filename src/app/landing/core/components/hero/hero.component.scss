@@ -1,28 +1,54 @@
 @import "../../../../../assets/styles/1-settings/colors.scss";
 
-.header{
-    height: 80px;
-    padding: 0 20px;
-
-    ul{
-        align-items: center;
-        display: flex;
-        margin: 0;
-
-        li{
-            margin: 0 20px;
-            &:last-child{
-                margin: 0;
-                font-weight: bold;
-            }
+.hero{
+    height: 480px;
+    padding: 0 70px;
+    display: flex;
+    align-items: center;
+    &_content{
+        max-width: 624px;
+        h1{
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 56px;
         }
+        div{
+            margin: 16px 0;
+            font-size: 16px;
+        }
+    }
+    &_image{
+        background-image: url('../../../../../assets/images/hero-woman.jpg');
+        background-position: center;
+        width: 510px;
+        height: 360px;
+        background-size: cover;
     }
 }
 
-.hero{
-    &_content{
-        div{
-            margin: 20px 0;
+@media screen and (max-width: 520px){
+    .hero{
+        height: auto;
+        display: block;
+        padding: inherit;
+        margin-top: 20%;
+        &_content{
+            max-width: 90%;
+            margin: 20px auto;
+            text-align: center;
+            h1{
+                font-size: 30px;
+                line-height: inherit;
+            }
+            div{
+                margin: 10px 0;
+                font-size: 14px;
+            }
+        }
+        &_image{
+            width: 90%;
+            height: 260px;
         }
     }
+
 }

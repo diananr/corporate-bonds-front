@@ -15,6 +15,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     AppSharedModule
   ],
   exports: [
+    AppSharedModule,
     LoginFormComponent,
     SignupFormComponent
   ]

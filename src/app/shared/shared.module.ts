@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroModule } from './ng-zorro/ng-zorro.module';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     FormsModule,
     ReactiveFormsModule,
     NgZorroModule,
-    LoadingComponent
+    LoadingComponent,
+    HeaderComponent,
   ]
 })
 export class SharedModule { }

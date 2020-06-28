@@ -1,8 +1,18 @@
 <div class="sidebar">
-	<div class="sidebar__avatar"></div>
+	<div class="sidebar__logo">
+		<h1>BonosCorp</h1>
+	</div>
 	<ul class="sidebar__nav">
-		<li ><a [routerLink]="['/admin/calculator']">Calculadora</a></li>
-		<li ><a [routerLink]="['/admin/bonds']">Mis bonos</a></li>
- 		<li (click)="logout()"><a>Salir</a></li>
+		<div>
+			<a [ngClass]="{'active': isActive('/admin/calculator')}"
+				[routerLink]="['/admin/calculator']">Calculadora</a>
+		</div>
+		<div>
+			<a [ngClass]="{'active': isActive('/admin/bonds')}"
+				[routerLink]="['/admin/bonds']">Mis bonos</a>
+		</div>
+ 		<div (click)="logout()">
+			 <a>Salir</a>
+		</div>
 	</ul>
 </div>

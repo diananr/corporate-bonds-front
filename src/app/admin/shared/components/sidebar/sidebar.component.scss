@@ -1,27 +1,37 @@
+@import "../../../../../assets/styles/1-settings/colors.scss";
+
 .sidebar{
 	text-align: center;
-    padding-top: 25px;
     position: sticky;
     top: 0;
     height: 100vh;
 
-	&__avatar{
-		background-color: black;
-        border-radius: 50%;
-        height: 100px;
-        margin: 0 auto 30px;
-        width: 100px;
-        overflow: hidden;
-        position: relative;
-	}
+	&__logo{
+        margin: 20px;
+        text-align: left;
+        h1{
+            color: $color-accent;
+            font-size: 20px;
+        }
+    }
 
 	&__nav{
-        li{
-            padding: 10px 0;
+        a{
+            color: inherit;
+            width: 90%;
+            height: 40px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            margin: auto;
             &.active{
-                a{
-                    color: black;
-                }
+                color: $color-accent;
+                border-radius: 3px;
+                background-color: #F6F8FE;
+            }
+            &:hover{
+                border-radius: 3px;
+                background-color: #F6F8FE;
             }
         }
     }

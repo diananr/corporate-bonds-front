@@ -1,12 +1,9 @@
 button {
-    // min-width: 96px;
-    // height: 36px;
     display: inline-block;
     -webkit-appearance: none;
     outline: none;
     text-align: center;
     border: 0;
-    // font-family: $font-primary !important;
     letter-spacing: 0.05em;
     font-weight: 500;
     cursor: pointer;
@@ -17,4 +14,12 @@ button {
 
 .button-margin{
     margin: 5px;
+}
+
+.second-button{
+    border-radius: 3px;
+    border: 1px solid #fe7a00;
+    color: #fe7a00;
+    background-color: #fff4e1;
+    padding: 7px 14px;
 }

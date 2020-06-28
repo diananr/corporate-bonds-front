@@ -10,8 +10,8 @@ $sidebar-width: 200px;
     }
 
     &__content{
-		background-color: #FAFBFD;
-		padding: 20px 30px;
+		background-color: #fafbff;
+		padding: 30px 40px;
         width: calc(100% - #{$sidebar-width});
     }
 }
