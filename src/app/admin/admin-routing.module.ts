@@ -7,7 +7,11 @@ const routes: Routes = [
     path: '', component: AdminComponent,
     children: [
       {
-        path: '', redirectTo: 'calculator', pathMatch: 'full'
+        path: '', redirectTo: 'dashboard', pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadChildren:() => import('src/app/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'calculator',
@@ -17,6 +21,7 @@ const routes: Routes = [
         path: 'bonds',
         loadChildren:() => import('src/app/admin/sales/sales.module').then(m => m.SalesModule)
       },
+
     ]
   }
 ];
