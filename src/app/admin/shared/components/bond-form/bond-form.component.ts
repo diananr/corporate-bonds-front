@@ -20,8 +20,10 @@ export class BondFormComponent implements OnInit {
 
   public flowList: Flow[] = [];
   public valoresFlujoEmisor = [];
+  public valoresFlujoBonista = [];
   public tasaTIREmisor: number = 0;
   public tasaTCEAEmisor: number = 0;
+  public tasaTIRBonista: number = 0;
 
   public tipoDeFrecuencias = [
     {label: 'Diaria', value: 360},
@@ -32,6 +34,7 @@ export class BondFormComponent implements OnInit {
     {label: 'Semestral', value: 180},
     {label: 'Anual', value: 1},
   ]
+
 
   constructor(
     private fb: FormBuilder,
@@ -78,7 +81,8 @@ export class BondFormComponent implements OnInit {
       });
   }
 
-  calculateFlow(){
+  calculateFlow()
+  {
     var data = Object.assign({}, this.bondFG.value);
     var nPeriodosPorAnio = Number(data.tipoAnio) / data.frecuenciaPago;
     var nTotalDePeriodos = nPeriodosPorAnio * data.numAnios;
@@ -98,18 +102,22 @@ export class BondFormComponent implements OnInit {
       data.valorComercial *
       ((data.estructuracion + data.colocacion + data.flotacion + data.cavali)  / 100);
     var costosInicialesBonista =
-      data.valorComercial +
-      ((data.flotacion / 100) * data.valorComercial) +
-      ((data.cavali / 100) * data.valorComercial);
+    data.valorComercial *
+    ((data.flotacion + data.cavali)  / 100);
+    console.log("observado", costosInicialesBonista)
 
     var firstFlow = new Flow();
     firstFlow.costosInicialesEmisor = -costosInicialesEmisor;
     firstFlow.costosInicialesBonista = costosInicialesBonista;
     firstFlow.flujoEmisor = data.valorComercial - costosInicialesEmisor;
+    firstFlow.flujoBonista = -data.valorComercial - costosInicialesBonista;
     this.valoresFlujoEmisor.push(-firstFlow.flujoEmisor);
+    this.valoresFlujoBonista.push(firstFlow.flujoBonista);
+    console.log("mirando", firstFlow);
     this.flowList.push(firstFlow);
 
     for(var i = 1; i <= nTotalDePeriodos; i++){
+      console.log("mirando", i);
       var flujo = new Flow();
       flujo.valorNominal = i == 1 ? data.valorNominal : this.flowList[i-1].valorNominal - this.flowList[i-1].amortizacion;
       flujo.cupon = tasaTEP * flujo.valorNominal;
@@ -123,18 +131,24 @@ export class BondFormComponent implements OnInit {
       flujo.flujoEmisor = i < nTotalDePeriodos
         ? flujo.cuponExcel
         : -data.valorNominal + flujo.cuponExcel + flujo.prima;
+      flujo.flujoBonista = -flujo.flujoEmisor
 
       this.valoresFlujoEmisor.push(-flujo.flujoEmisor);
+      this.valoresFlujoBonista.push(flujo.flujoBonista);
       this.flowList.push(flujo);
     }
 
     this.tasaTIREmisor = this.IRRCalc(this.valoresFlujoEmisor);
+    this.tasaTIRBonista = this.IRRCalc(this.valoresFlujoBonista);
+    console.log("mirando", this.valoresFlujoBonista);
     this.tasaTCEAEmisor = this.calculateTCEA(this.tasaTIREmisor / 100, data.tipoAnio, data.frecuenciaPago);
   }
+
 
   calculateTCEA(IRR, diasPorAnio, diasPorPeriodo){
     return (Math.pow(IRR + 1 , diasPorAnio / diasPorPeriodo) - 1)*100;
   }
+
 
   IRRCalc(CArray) {
     var min = 0.0;

@@ -25,19 +25,19 @@
 			<nz-form-item>
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
-					<input nz-input formControlName="valorNominal" type="number"/>
+					<input nz-input formControlName="valorNominal"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Valor Comercial</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="valorComercial" type="number"/>
+					<input nz-input formControlName="valorComercial"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>N° de Años</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="numAnios" type="number"/>
+					<input nz-input formControlName="numAnios"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item class="flex-40">
@@ -72,13 +72,13 @@
 			<nz-form-item>
 				<nz-form-label>Valor de la tasa (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="montoTasa" type="number"/>
+					<input nz-input formControlName="montoTasa"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Tasa descontada</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="tasaDescontada" type="number"/>
+					<input nz-input formControlName="tasaDescontada"/>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
@@ -86,31 +86,31 @@
 			<nz-form-item>
 				<nz-form-label>Prima (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="prima" type="number"/>
+					<input nz-input formControlName="prima"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Estructuración (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="estructuracion" type="number"/>
+					<input nz-input formControlName="estructuracion"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Colocacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="colocacion" type="number"/>
+					<input nz-input formControlName="colocacion"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Flotacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="flotacion" type="number"/>
+					<input nz-input formControlName="flotacion"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>CAVALI (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="cavali" type="number"/>
+					<input nz-input formControlName="cavali"/>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
@@ -127,13 +127,17 @@
 		</nz-form-item>
 	</form>
 </div>
+
 <div class="card">
 	<div *ngIf="flowList.length > 0">
 		<div>
-			<span>TIR: {{tasaTIREmisor | number: '1.2-2'}}</span>
+			<span>TIREmisor: {{tasaTIREmisor | number: '1.2-2'}}</span>
 		</div>
 		<div>
 			<span>TCEA: {{tasaTCEAEmisor | number: '1.2-2'}}</span>
+		</div>
+		<div>
+			<span>TIRBonista: {{tasaTIRBonista | number: '1.2-2'}}</span>
 		</div>
 		<div>
 			<nz-table>
@@ -143,7 +147,8 @@
 						<th>Cupon Excel</th>
 						<th>C.I. Emisor</th>
 						<th>Prima</th>
-						<th>Flujo Emisor</th>
+            <th>Flujo Emisor</th>
+            <th>Flujo Bonista</th>
 						<th>Cupon Clase</th>
 						<th>Cuota</th>
 						<th>Amortizacion</th>
@@ -156,6 +161,7 @@
 						<td>{{data.costosInicialesEmisor | number: '1.2-2'}}</td>
 						<td>{{data.prima | number: '1.2-2'}}</td>
 						<td>{{data.flujoEmisor | number: '1.2-2'}}</td>
+						<td>{{data.flujoBonista | number: '1.2-2'}}</td>
 						<td>{{data.cupon | number: '1.2-2'}}</td>
 						<td>{{data.cuota | number: '1.2-2'}}</td>
 						<td>{{data.amortizacion | number: '1.2-2'}}</td>
