@@ -20,10 +20,10 @@ export class ApiService {
 		}
 		headers = headers.append('Access-Control-Allow-Origin', '*');
 
-		let token = this.jwt.getToken();
+		/* let token = this.jwt.getToken();
 		if( token && token != ''){
 			headers = headers.append('Authorization', `${this.jwt.getToken()}`);
-		}
+		} */
 		return headers;
 	}
 
