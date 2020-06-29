@@ -9,4 +9,8 @@ export class AuthService {
 	login(request: any){
 		return this.api.post('auth/login', request);
 	}
+
+	signup(request: any){
+		return this.api.post('auth/signup', request);
+	}
 }
