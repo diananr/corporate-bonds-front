@@ -40,10 +40,11 @@ export class SignupFormComponent implements OnInit {
   onSignup(){
     if(this.signupFG.valid){
       const signupRequest = {
+        idUsuario: 9,
         NUsuario: this.signupFG.value.name,
         Correo: (this.signupFG.value.email).toLowerCase(),
         Psw: this.signupFG.value.password,
-        TipoUsuario_idTipoUsuario: this.signupFG.value.userType,
+        TipoUsuario_idTipoUsuario: Number(this.signupFG.value.userType),
         Ruc: this.signupFG.value.ruc,
       }
       this.loading = true;
