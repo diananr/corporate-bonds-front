@@ -25,19 +25,19 @@
 			<nz-form-item>
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
-					<input nz-input formControlName="valorNominal"/>
+					<input nz-input formControlName="valorNominal" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Valor Comercial</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="valorComercial"/>
+					<input nz-input formControlName="valorComercial" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>N° de Años</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="numAnios"/>
+					<input nz-input formControlName="numAnios" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item class="flex-40">
@@ -72,13 +72,13 @@
 			<nz-form-item>
 				<nz-form-label>Valor de la tasa (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="montoTasa"/>
+					<input nz-input formControlName="montoTasa" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Tasa descontada</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="tasaDescontada"/>
+					<input nz-input formControlName="tasaDescontada" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
@@ -86,31 +86,31 @@
 			<nz-form-item>
 				<nz-form-label>Prima (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="prima"/>
+					<input nz-input formControlName="prima" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Estructuración (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="estructuracion"/>
+					<input nz-input formControlName="estructuracion" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Colocacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="colocacion"/>
+					<input nz-input formControlName="colocacion" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>Flotacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="flotacion"/>
+					<input nz-input formControlName="flotacion" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label>CAVALI (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="cavali"/>
+					<input nz-input formControlName="cavali" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
@@ -126,4 +126,36 @@
 			</nz-form-control>
 		</nz-form-item>
 	</form>
+</div>
+<div class="card">
+	<div *ngIf="flowList.length > 0">
+		<div>
+			<nz-table>
+				<thead>
+					<tr>
+						<th>N°</th>
+						<th>Cupon Excel</th>
+						<th>C.I. Emisor</th>
+						<th>Prima</th>
+						<th>Flujo Emisor</th>
+						<th>Cupon Clase</th>
+						<th>Cuota</th>
+						<th>Amortizacion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let data of flowList,let i=index">
+						<td>{{i}}</td>
+						<td>{{data.cuponExcel | number: '1.2-2'}}</td>
+						<td>{{data.costosInicialesEmisor | number: '1.2-2'}}</td>
+						<td>{{data.prima | number: '1.2-2'}}</td>
+						<td>{{data.flujoEmisor | number: '1.2-2'}}</td>
+						<td>{{data.cupon | number: '1.2-2'}}</td>
+						<td>{{data.cuota | number: '1.2-2'}}</td>
+						<td>{{data.amortizacion | number: '1.2-2'}}</td>
+					</tr>
+				</tbody>
+			</nz-table>
+		</div>
+	</div>
 </div>
