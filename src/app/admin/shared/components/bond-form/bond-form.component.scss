@@ -1,0 +1,13 @@
+form{
+    nz-form-item{
+        margin-right: 20px;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+.card{
+    background-color: white;
+    box-shadow: 0 7px 14px 0 rgb(250, 251, 255), 0 3px 6px 0 rgb(232, 232, 232);
+    padding: 20px;
+}
