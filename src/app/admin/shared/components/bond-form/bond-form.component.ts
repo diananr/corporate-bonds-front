@@ -24,6 +24,7 @@ export class BondFormComponent implements OnInit {
   public tasaTIREmisor: number = 0;
   public tasaTCEAEmisor: number = 0;
   public tasaTIRBonista: number = 0;
+  public tasaTREABonista: number = 0;
 
   public tipoDeFrecuencias = [
     {label: 'Diaria', value: 360},
@@ -142,6 +143,7 @@ export class BondFormComponent implements OnInit {
     this.tasaTIRBonista = this.IRRCalc(this.valoresFlujoBonista);
     console.log("mirando", this.valoresFlujoBonista);
     this.tasaTCEAEmisor = this.calculateTCEA(this.tasaTIREmisor / 100, data.tipoAnio, data.frecuenciaPago);
+    this.tasaTREABonista = this.calculateTREA(this.tasaTIRBonista / 100, data.tipoAnio, data.frecuenciaPago);
   }
 
 
@@ -149,6 +151,9 @@ export class BondFormComponent implements OnInit {
     return (Math.pow(IRR + 1 , diasPorAnio / diasPorPeriodo) - 1)*100;
   }
 
+  calculateTREA(IRR, diasPorAnio, diasPorPeriodo){
+    return (Math.pow(IRR + 1 , diasPorAnio / diasPorPeriodo) - 1)*100;
+  }
 
   IRRCalc(CArray) {
     var min = 0.0;
