@@ -4,7 +4,6 @@ import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Flow } from '../../models/flow';
-
 @Component({
   selector: 'bond-form',
   templateUrl: './bond-form.component.html',
@@ -18,7 +17,11 @@ export class BondFormComponent implements OnInit {
   public bondId: number;
   public bondSubscription: Subscription;
   public loading: boolean;
+
   public flowList: Flow[] = [];
+  public valoresFlujoEmisor = [];
+  public tasaTIREmisor: number = 0;
+  public tasaTCEAEmisor: number = 0;
 
   public tipoDeFrecuencias = [
     {label: 'Diaria', value: 360},
@@ -42,20 +45,20 @@ export class BondFormComponent implements OnInit {
     this.bondFG = this.fb.group({
       id: [],
       metodoPago: ['Frances',[Validators.required]],
-      tipoMoneda: ['',[Validators.required]],
-      valorNominal: [0,[Validators.required]],
-      valorComercial: [0,[Validators.required]],
-      numAnios: [0,[Validators.required]],
+      tipoMoneda: ['PEN',[Validators.required]],
+      valorNominal: [1000,[Validators.required]],
+      valorComercial: [1050,[Validators.required]],
+      numAnios: [3,[Validators.required]],
       tipoAnio: ['360',[Validators.required]],
-      frecuenciaPago: [0,[Validators.required]],
-      tipoTasa: ['',[Validators.required]],
-      montoTasa: [0,[Validators.required]],
-      tasaDescontada: [0,[Validators.required]],
-      prima: [0,[Validators.required]],
-      estructuracion: [0,[Validators.required]],
-      colocacion: [0,[Validators.required]],
-      flotacion: [0,[Validators.required]],
-      cavali: [0,[Validators.required]],
+      frecuenciaPago: [180,[Validators.required]],
+      tipoTasa: ['Efectiva',[Validators.required]],
+      montoTasa: [9,[Validators.required]],
+      tasaDescontada: [6,[Validators.required]],
+      prima: [1,[Validators.required]],
+      estructuracion: [0.45,[Validators.required]],
+      colocacion: [0.25,[Validators.required]],
+      flotacion: [0.15,[Validators.required]],
+      cavali: [0.50,[Validators.required]],
     });
     this.loading = false;
   }
@@ -102,7 +105,8 @@ export class BondFormComponent implements OnInit {
     var firstFlow = new Flow();
     firstFlow.costosInicialesEmisor = -costosInicialesEmisor;
     firstFlow.costosInicialesBonista = costosInicialesBonista;
-    firstFlow.flujoEmisor = data.valorComercial + costosInicialesEmisor;
+    firstFlow.flujoEmisor = data.valorComercial - costosInicialesEmisor;
+    this.valoresFlujoEmisor.push(-firstFlow.flujoEmisor);
     this.flowList.push(firstFlow);
 
     for(var i = 1; i <= nTotalDePeriodos; i++){
@@ -120,13 +124,38 @@ export class BondFormComponent implements OnInit {
         ? flujo.cuponExcel
         : -data.valorNominal + flujo.cuponExcel + flujo.prima;
 
+      this.valoresFlujoEmisor.push(-flujo.flujoEmisor);
       this.flowList.push(flujo);
     }
+
+    this.tasaTIREmisor = this.IRRCalc(this.valoresFlujoEmisor);
+    this.tasaTCEAEmisor = this.calculateTCEA(this.tasaTIREmisor / 100, data.tipoAnio, data.frecuenciaPago);
+  }
+
+  calculateTCEA(IRR, diasPorAnio, diasPorPeriodo){
+    return (Math.pow(IRR + 1 , diasPorAnio / diasPorPeriodo) - 1)*100;
+  }
+
+  IRRCalc(CArray) {
+    var min = 0.0;
+    var max = 1.0;
+    do {
+      var guest = (min + max) / 2;
+      var NPV = 0;
+      for (var j = 0; j < CArray.length; j++) {
+        NPV += CArray[j] / Math.pow((1 + guest), j);
+      }
+      if (NPV > 0) {
+        min = guest;
+      } else {
+        max = guest;
+      }
+    } while (Math.abs(NPV) > 0.000001);
+    return guest * 100;
   }
 
   onSubmit(){
     if(this.bondFG.valid){
-      console.log('values', this.bondFG.value);
       this.calculateFlow();
     } else {
       console.log('invalid form');

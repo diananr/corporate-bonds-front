@@ -130,6 +130,12 @@
 <div class="card">
 	<div *ngIf="flowList.length > 0">
 		<div>
+			<span>TIR: {{tasaTIREmisor | number: '1.2-2'}}</span>
+		</div>
+		<div>
+			<span>TCEA: {{tasaTCEAEmisor | number: '1.2-2'}}</span>
+		</div>
+		<div>
 			<nz-table>
 				<thead>
 					<tr>
