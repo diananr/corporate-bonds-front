@@ -6,13 +6,13 @@ export class AuthService {
 
 	constructor(public api: ApiService){}
 
-  login(request: any)
-  {
+	login(request: any)
+	{
 		return this.api.post('auth/login', request);
 	}
 
-  signup(request: any)
-  {
-		return this.api.post('auth/signup', request);
+	signup(request: any)
+	{
+		return this.api.post('api/Usuarios', request);
 	}
 }

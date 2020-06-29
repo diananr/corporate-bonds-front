@@ -26,9 +26,10 @@ export class SignupFormComponent implements OnInit {
     this.loading = false;
     this.signupFG = this.fb.group({
       name: ['',[Validators.required]],
-      lastName: ['',[Validators.required]],
       email: ['',[Validators.email]],
       password: ['',[Validators.required]],
+      userType: ['',[Validators.required]],
+      ruc: [''],
     })
   }
 
@@ -39,10 +40,11 @@ export class SignupFormComponent implements OnInit {
   onSignup(){
     if(this.signupFG.valid){
       const signupRequest = {
-        name: this.signupFG.value.name,
-        lastName: this.signupFG.value.lastName,
-        email: (this.signupFG.value.email).toLowerCase(),
-        password: this.signupFG.value.password
+        NUsuario: this.signupFG.value.name,
+        Correo: (this.signupFG.value.email).toLowerCase(),
+        Psw: this.signupFG.value.password,
+        TipoUsuario_idTipoUsuario: this.signupFG.value.userType,
+        Ruc: this.signupFG.value.ruc,
       }
       this.loading = true;
 
