@@ -22,36 +22,36 @@
 			</nz-form-item>
 		</div>
 		<div class="flex-row-layout jc-space-between">
-			<nz-form-item>
+			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
 					<input nz-input formControlName="valorNominal"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>Valor Comercial</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="valorComercial"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>N° de Años</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="numAnios"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item class="flex-40">
+			<nz-form-item style="flex-grow: 12">
 				<nz-form-label>Tipo de Año</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoAnio">
-						<nz-option nzLabel="360" nzValue="360"></nz-option>
-						<nz-option nzLabel="365" nzValue="365"></nz-option>
+						<nz-option nzLabel="Ordinario" nzValue="360"></nz-option>
+						<nz-option nzLabel="Exacto" nzValue="365"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
 		<div class="flex-row-layout jc-space-between">
-			<nz-form-item class="flex-40">
+			<nz-form-item style="flex-grow: 12">
 				<nz-form-label>Frecuencia de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="frecuenciaPago">
@@ -60,7 +60,7 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item class="flex-40">
+			<nz-form-item style="flex-grow: 12">
 				<nz-form-label>Tipo de tasa</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoTasa">
@@ -69,13 +69,13 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>Valor de la tasa (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="montoTasa"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>Tasa descontada</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="tasaDescontada"/>
@@ -114,51 +114,63 @@
 				</nz-form-control>
 			</nz-form-item>
 		</div>
-		<nz-form-item>
-			<nz-form-control class="text-right">
-				<button type="button" nz-button [nzType]="'default'"
-					(click)="cancelRequest()" style="margin-right: 15px;">Cancelar</button>
-				<button type="submit" nz-button [nzType]="'primary'">
-					<loading *ngIf="loading"></loading>
-					<span *ngIf="method == 'create' && !loading">Calcular flujo</span>
-					<span *ngIf="method == 'update' && !loading">Editar flujo</span>
-				</button>
-			</nz-form-control>
-		</nz-form-item>
+		<div class="text-right">
+			<button type="button" nz-button [nzType]="'default'"
+				(click)="cancelRequest()" style="margin-right: 15px;">Cancelar</button>
+			<button type="submit" nz-button [nzType]="'primary'">
+				<span *ngIf="method == 'create' && !loading">Calcular flujo</span>
+				<span *ngIf="method == 'update' && !loading">Editar flujo</span>
+			</button>
+		</div>
 	</form>
 </div>
-
-<div class="card">
-	<div *ngIf="flowList.length > 0">
-		<div>
-			<span>TIREmisor: {{tasaTIREmisor | number: '1.2-2'}}</span>
+<br>
+<br>
+<div class="card" *ngIf="flowList.length > 0">
+	<div>
+		<div class="flex-row-layout jc-space-between">
+			<div class="each-card">
+				<h5>TIR Emisor</h5>
+				<div>
+					<span>{{tasaTIREmisor | number: '1.2-2'}}%</span>
+				</div>
+			</div>
+			<div class="each-card">
+				<h5>TCEA Emisor</h5>
+				<div>
+					<span>{{tasaTCEAEmisor | number: '1.2-2'}}%</span>
+				</div>
+			</div>
+			<div class="each-card">
+				<h5>TIR Bonista</h5>
+				<div>
+					<span>{{tasaTIRBonista | number: '1.2-2'}}%</span>
+				</div>
+			</div>
+			<div class="each-card">
+				<h5>TREA Bonista</h5>
+				<div>
+					<span>{{tasaTREABonista | number: '1.2-2'}}%</span>
+				</div>
+			</div>
 		</div>
 		<div>
-			<span>TCEA: {{tasaTCEAEmisor | number: '1.2-2'}}</span>
-		</div>
-		<div>
-			<span>TIRBonista: {{tasaTIRBonista | number: '1.2-2'}}</span>
-    </div>
-    <div>
-			<span>TREA: {{tasaTREABonista | number: '1.2-2'}}</span>
-		</div>
-		<div>
-			<nz-table>
+			<nz-table #saleTable nzSize="middle" [nzData]="flowList">
 				<thead>
 					<tr>
 						<th>N°</th>
 						<th>Cupon Excel</th>
 						<th>C.I. Emisor</th>
 						<th>Prima</th>
-            <th>Flujo Emisor</th>
-            <th>Flujo Bonista</th>
+						<th>Flujo Emisor</th>
+						<th>Flujo Bonista</th>
 						<th>Cupon Clase</th>
 						<th>Cuota</th>
 						<th>Amortizacion</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let data of flowList,let i=index">
+					<tr *ngFor="let data of saleTable.data,let i=index">
 						<td>{{i}}</td>
 						<td>{{data.cuponExcel | number: '1.2-2'}}</td>
 						<td>{{data.costosInicialesEmisor | number: '1.2-2'}}</td>
@@ -171,6 +183,11 @@
 					</tr>
 				</tbody>
 			</nz-table>
+		</div>
+		<div class="text-right">
+			<button type="submit" nz-button [nzType]="'primary'">
+				<span>Guardar bono</span>
+			</button>
 		</div>
 	</div>
 </div>

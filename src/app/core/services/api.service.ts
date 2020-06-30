@@ -14,16 +14,10 @@ export class ApiService {
 
 	private appendAuthorizationHeader(headers: HttpHeaders, formaData?:boolean): HttpHeaders{
 		headers = headers || new HttpHeaders();
-
 		if (!formaData) {
 			headers = headers.append('Content-Type', 'application/json');
 		}
 		headers = headers.append('Access-Control-Allow-Origin', '*');
-
-		/* let token = this.jwt.getToken();
-		if( token && token != ''){
-			headers = headers.append('Authorization', `${this.jwt.getToken()}`);
-		} */
 		return headers;
 	}
 

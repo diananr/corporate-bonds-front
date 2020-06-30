@@ -3,10 +3,6 @@
 		<h1>BonosCorp</h1>
 	</div>
 	<ul class="sidebar__nav">
-    <div>
-			<a [ngClass]="{'active': isActive('/admin/dashboard')}"
-				[routerLink]="['/admin/dashboard']">Inicio</a>
-		</div>
 		<div>
 			<a [ngClass]="{'active': isActive('/admin/calculator')}"
 				[routerLink]="['/admin/calculator']">Calculadora</a>
@@ -16,7 +12,7 @@
 				[routerLink]="['/admin/bonds']">Mis bonos</a>
 		</div>
  		<div (click)="logout()">
-			 <a>Salir</a>
+			<a>Salir</a>
 		</div>
 	</ul>
 </div>
