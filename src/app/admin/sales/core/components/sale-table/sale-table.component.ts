@@ -61,7 +61,7 @@ export class SaleTableComponent implements OnInit {
         tasaTCEAEmisor: '4.40%'
       }
     ]
-
+ */
     /* this.saleService.readSales().subscribe(
       (response: any)=>{
         this.loading = false;
