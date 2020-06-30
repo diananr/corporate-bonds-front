@@ -46,11 +46,9 @@ export class LoginFormComponent implements OnInit {
 
       this.authService.login(loginRequest).subscribe(
         (response: any) => {
-          if(response.data) {
-            this.localStorage.save('userLogged', response.data.user);
-            this.notification.success('', 'Bienvenidx a BonoCorp');
-            this.router.navigateByUrl('/admin');
-          }
+          this.localStorage.save('userLogged', response);
+          this.notification.success('', 'Bienvenidx a BonoCorp');
+          this.router.navigateByUrl('/admin');
           this.loading = false;
         },
         (error: HttpErrorResponse) => {

@@ -8,11 +8,11 @@ export class AuthService {
 
 	login(request: any)
 	{
-		return this.api.post('auth/login', request);
+		return this.api.post('api/auth/login', request);
 	}
 
 	signup(request: any)
 	{
-		return this.api.post('api/Usuarios', request);
+		return this.api.post('api/auth/signup', request);
 	}
 }
