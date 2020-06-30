@@ -35,9 +35,15 @@ export class SaleTableComponent implements OnInit {
     this.loading = false;
   }
 
-  getSales(){
+  getSales()
+  {
+   this.sales = localStorage.getItem('listaDeBonos')
+     ? JSON.parse(localStorage.getItem('listaDeBonos'))
+     : [];
+
+
     /* this.loading = true; */
-    this.sales = [
+    /*this.sales = [
       {
         id:1,
         valorComercial: '3000',
