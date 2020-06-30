@@ -40,21 +40,22 @@ export class SaleTableComponent implements OnInit {
     this.sales = [
       {
         id:1,
-        type: 'Regalo',
-        weight: 30,
-        total:8.30,
-        status: 'Aceptado',
-        detail: ''
+        valorComercial: '3000',
+        frecuenciaPago: 'Trimestral',
+        montoTasa:'5.00%',
+        tasaTIRBonista: '3.70%',
+        tasaTCEAEmisor: '3.80%'
       },
       {
-        id:1,
-        type: 'Regalo',
-        weight: 30,
-        total:8.30,
-        status: 'Aceptado',
-        detail: ''
+        id:2,
+        valorComercial: '5000',
+        frecuenciaPago: 'Cuatrimestral',
+        montoTasa:'7.00%',
+        tasaTIRBonista: '5.10%',
+        tasaTCEAEmisor: '4.40%'
       }
     ]
+
     /* this.saleService.readSales().subscribe(
       (response: any)=>{
         this.loading = false;

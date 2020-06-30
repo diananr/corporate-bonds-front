@@ -1,8 +1,8 @@
 export class Sale {
 	id: number;
-	type: any;
-	weight: any;
-	total: any;
-	status: any;
-	detail: any;
+	valorComercial: any;
+	frecuenciaPago: any;
+	montoTasa: any;
+	tasaTIRBonista: any;
+	tasaTCEAEmisor: any;
 }
