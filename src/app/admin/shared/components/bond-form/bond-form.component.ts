@@ -84,6 +84,7 @@ export class BondFormComponent implements OnInit {
 
   calculateFlow()
   {
+    this.flowList = [];
     var data = Object.assign({}, this.bondFG.value);
     var nPeriodosPorAnio = Number(data.tipoAnio) / data.frecuenciaPago;
     var nTotalDePeriodos = nPeriodosPorAnio * data.numAnios;
