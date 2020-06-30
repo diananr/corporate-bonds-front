@@ -4,7 +4,8 @@
 		<div>
 			<button nz-button [nzType]="'default'" routerLink="/admin" (click)="showModal()">Registrar Bono</button>
 		</div>
-	</div>
+  </div>
+  <div class="each-card">
 	<div>
 		<nz-table #saleTable nzSize="middle" [nzData]="sales" [nzLoading]="loading">
 			<thead>
@@ -26,7 +27,8 @@
 				</tr>
 			</tbody>
 		</nz-table>
-	</div>
+  </div>
+</div>
 </div>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Nueva oferta" [nzFooter]="null"
 	(nzOnCancel)="hideModal()">
