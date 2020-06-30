@@ -40,8 +40,10 @@
 @media screen and (max-width: 520px){
 	.sidebar{
 		width: 90%;
-		margin: auto;
-		float: unset;
+        margin: auto;
+        float: unset;
+        height: auto;
+        padding: 0;
 
 		&__avatar{
 			display: none;

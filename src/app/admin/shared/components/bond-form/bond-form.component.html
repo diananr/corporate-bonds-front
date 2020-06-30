@@ -1,33 +1,35 @@
+<div class="flex-row-layout jc-space-between ai-center">
+	<h2 style="margin: 0">Calculadora</h2>
+	<div>
+		<button type="button" nz-button [nzType]="'default'"
+			(click)="uploadExample()">Ejemplo</button>
+	</div>
+</div>
+<br>
 <div class="card">
 	<form nz-form [nzLayout]="'vertical'"
 	[formGroup]="bondFG" (ngSubmit)="onSubmit()">
-		<div class="flex-row-layout jc-space-between">
-			<div class="flex-row-layout">
-				<nz-form-item>
-					<nz-form-label>Método de Pago</nz-form-label>
-					<nz-form-control nzErrorTip="Please select type!">
-						<nz-select nzShowSearch nzAllowClear formControlName="metodoPago">
-							<nz-option nzLabel="Francés" nzValue="Frances"></nz-option>
-						</nz-select>
-					</nz-form-control>
-				</nz-form-item>
-				<nz-form-item>
-					<nz-form-label>Tipo de moneda</nz-form-label>
-					<nz-form-control nzErrorTip="Please select type!">
-						<nz-select nzShowSearch nzAllowClear formControlName="tipoMoneda">
-							<nz-option nzLabel="Soles" nzValue="PEN"></nz-option>
-							<nz-option nzLabel="Dólares" nzValue="USD"></nz-option>
-							<nz-option nzLabel="Euros" nzValue="EUR"></nz-option>
-						</nz-select>
-					</nz-form-control>
-				</nz-form-item>
-			</div>
-			<div>
-				<button type="button" nz-button [nzType]="'default'"
-					(click)="uploadExample()">Ejemplo</button>
-			</div>
+		<div class="flex-row-layout">
+			<nz-form-item>
+				<nz-form-label>Método de Pago</nz-form-label>
+				<nz-form-control nzErrorTip="Please select type!">
+					<nz-select nzShowSearch nzAllowClear formControlName="metodoPago">
+						<nz-option nzLabel="Francés" nzValue="Frances"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label>Tipo de moneda</nz-form-label>
+				<nz-form-control nzErrorTip="Please select type!">
+					<nz-select nzShowSearch nzAllowClear formControlName="tipoMoneda">
+						<nz-option nzLabel="Soles" nzValue="PEN"></nz-option>
+						<nz-option nzLabel="Dólares" nzValue="USD"></nz-option>
+						<nz-option nzLabel="Euros" nzValue="EUR"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
 		</div>
-		<div class="flex-row-layout jc-space-between">
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="flex-grow: 1">
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
@@ -56,7 +58,7 @@
 				</nz-form-control>
 			</nz-form-item>
 		</div>
-		<div class="flex-row-layout jc-space-between">
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="flex-grow: 7">
 				<nz-form-label>Frecuencia de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
@@ -88,7 +90,7 @@
 				</nz-form-control>
 			</nz-form-item>
 		</div>
-		<div class="flex-row-layout jc-space-between">
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item>
 				<nz-form-label>Prima (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
@@ -134,7 +136,7 @@
 <br>
 <div class="card" *ngIf="flowList.length > 0">
 	<div>
-		<div class="flex-row-layout jc-space-between">
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<div class="each-card">
 				<h5>TIR Emisor</h5>
 				<div>
@@ -160,7 +162,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div style="overflow-x:auto;">
 			<nz-table #saleTable nzSize="middle" [nzData]="flowList">
 				<thead>
 					<tr>
