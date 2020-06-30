@@ -26,6 +26,9 @@ export class BondFormComponent implements OnInit {
   public tasaTIRBonista: number = 0;
   public tasaTREABonista: number = 0;
 
+  public saveBondFG: FormGroup;
+  public isVisible = false;
+
   public tipoDeFrecuencias = [
     {label: 'Diaria', value: 360},
     {label: 'Mensual', value: 30},
@@ -36,13 +39,12 @@ export class BondFormComponent implements OnInit {
     {label: 'Anual', value: 1},
   ]
 
-
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
   ) {
-      this.initRouteParamsListener();
+    this.initRouteParamsListener();
   }
 
   reset(){
@@ -64,6 +66,9 @@ export class BondFormComponent implements OnInit {
       flotacion: [0.15,[Validators.required]],
       cavali: [0.50,[Validators.required]],
     });
+    this.saveBondFG = this.fb.group({
+      nameBond: ['',[Validators.required]],
+    })
     this.loading = false;
   }
 
@@ -104,9 +109,8 @@ export class BondFormComponent implements OnInit {
       data.valorComercial *
       ((data.estructuracion + data.colocacion + data.flotacion + data.cavali)  / 100);
     var costosInicialesBonista =
-    data.valorComercial *
-    ((data.flotacion + data.cavali)  / 100);
-    console.log("observado", costosInicialesBonista)
+      data.valorComercial *
+      ((data.flotacion + data.cavali)  / 100);
 
     var firstFlow = new Flow();
     firstFlow.costosInicialesEmisor = -costosInicialesEmisor;
@@ -115,11 +119,9 @@ export class BondFormComponent implements OnInit {
     firstFlow.flujoBonista = -data.valorComercial - costosInicialesBonista;
     this.valoresFlujoEmisor.push(-firstFlow.flujoEmisor);
     this.valoresFlujoBonista.push(firstFlow.flujoBonista);
-    console.log("mirando", firstFlow);
     this.flowList.push(firstFlow);
 
     for(var i = 1; i <= nTotalDePeriodos; i++){
-      console.log("mirando", i);
       var flujo = new Flow();
       flujo.valorNominal = i == 1 ? data.valorNominal : this.flowList[i-1].valorNominal - this.flowList[i-1].amortizacion;
       flujo.cupon = tasaTEP * flujo.valorNominal;
@@ -142,7 +144,6 @@ export class BondFormComponent implements OnInit {
 
     this.tasaTIREmisor = this.IRRCalc(this.valoresFlujoEmisor);
     this.tasaTIRBonista = this.IRRCalc(this.valoresFlujoBonista);
-    console.log("mirando", this.valoresFlujoBonista);
     this.tasaTCEAEmisor = this.calculateTCEA(this.tasaTIREmisor / 100, data.tipoAnio, data.frecuenciaPago);
     this.tasaTREABonista = this.calculateTREA(this.tasaTIRBonista / 100, data.tipoAnio, data.frecuenciaPago);
   }
@@ -183,5 +184,32 @@ export class BondFormComponent implements OnInit {
   }
 
   cancelRequest(){
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleCancel(): void {
+    this.saveBondFG = this.fb.group({
+      nameBond: ['',[Validators.required]],
+    })
+    this.isVisible = false;
+  }
+
+  saveBond(){
+    if(this.saveBondFG.valid){
+      var bond = Object.assign({}, this.bondFG.value);
+      bond.name = this.saveBondFG.value.nameBond;
+      bond.TIREmisor = this.tasaTIREmisor;
+      bond.TCEAEmisor = this.tasaTCEAEmisor;
+      bond.TIRBonista = this.tasaTIRBonista;
+      bond.TREABonista = this.tasaTREABonista;
+      console.log('bono', bond);
+      this.handleCancel();
+      this.router.navigateByUrl('admin/bonds');
+    } else {
+      console.log('invalid form');
+    }
   }
 }
