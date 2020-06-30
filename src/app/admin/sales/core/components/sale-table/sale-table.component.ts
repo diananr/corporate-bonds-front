@@ -37,7 +37,11 @@ export class SaleTableComponent implements OnInit {
 
   getSales(){
     /* this.loading = true; */
-    this.sales = [
+    this.sales = localStorage.getItem('listaDeBonos')
+      ? JSON.parse(localStorage.getItem('listaDeBonos'))
+      : [];
+
+    /* this.sales = [
       {
         id:1,
         valorComercial: '3000',
@@ -55,7 +59,7 @@ export class SaleTableComponent implements OnInit {
         tasaTCEAEmisor: '4.40%'
       }
     ]
-
+ */
     /* this.saleService.readSales().subscribe(
       (response: any)=>{
         this.loading = false;

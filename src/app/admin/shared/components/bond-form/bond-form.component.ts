@@ -50,21 +50,21 @@ export class BondFormComponent implements OnInit {
   reset(){
     this.bondFG = this.fb.group({
       id: [],
-      metodoPago: ['Frances',[Validators.required]],
-      tipoMoneda: ['PEN',[Validators.required]],
-      valorNominal: [1000,[Validators.required]],
-      valorComercial: [1050,[Validators.required]],
-      numAnios: [3,[Validators.required]],
-      tipoAnio: ['360',[Validators.required]],
-      frecuenciaPago: [180,[Validators.required]],
-      tipoTasa: ['Efectiva',[Validators.required]],
-      montoTasa: [9,[Validators.required]],
-      tasaDescontada: [6,[Validators.required]],
-      prima: [1,[Validators.required]],
-      estructuracion: [0.45,[Validators.required]],
-      colocacion: [0.25,[Validators.required]],
-      flotacion: [0.15,[Validators.required]],
-      cavali: [0.50,[Validators.required]],
+      metodoPago: ['',[Validators.required]],
+      tipoMoneda: ['',[Validators.required]],
+      valorNominal: [0,[Validators.required]],
+      valorComercial: [0,[Validators.required]],
+      numAnios: [0,[Validators.required]],
+      tipoAnio: ['',[Validators.required]],
+      frecuenciaPago: [0,[Validators.required]],
+      tipoTasa: ['',[Validators.required]],
+      montoTasa: [0,[Validators.required]],
+      tasaDescontada: [0,[Validators.required]],
+      prima: [0,[Validators.required]],
+      estructuracion: [0,[Validators.required]],
+      colocacion: [0,[Validators.required]],
+      flotacion: [0,[Validators.required]],
+      cavali: [0,[Validators.required]],
     });
     this.saveBondFG = this.fb.group({
       nameBond: ['',[Validators.required]],
@@ -220,5 +220,26 @@ export class BondFormComponent implements OnInit {
     } else {
       console.log('invalid form');
     }
+  }
+
+  uploadExample(){
+    var example = {
+      metodoPago: 'Frances',
+      tipoMoneda: 'PEN',
+      valorNominal: 1000,
+      valorComercial: 1050,
+      numAnios: 3,
+      tipoAnio: '360',
+      frecuenciaPago: 180,
+      tipoTasa: 'Efectiva',
+      montoTasa: 9,
+      tasaDescontada: 6,
+      prima: 1,
+      estructuracion: 0.45,
+      colocacion: 0.25,
+      flotacion: 0.15,
+      cavali: 0.50
+    }
+    this.bondFG.patchValue(example);
   }
 }
