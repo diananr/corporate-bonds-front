@@ -15,4 +15,15 @@ export class AuthService {
 	{
 		return this.api.post('api/auth/signup', request);
 	}
+
+	createBond(request: any)
+	{
+		return this.api.post('api/bond/create', request);
+	}
+
+	getBondsByUser()
+	{
+		var userId = JSON.parse(localStorage.getItem('userLogged')).id;
+		return this.api.get(`api/bond/byUser/${userId}`);
+	}
 }

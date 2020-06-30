@@ -4,6 +4,8 @@ import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Flow } from '../../models/flow';
+import { NotificationUtil } from 'src/app/core/utils/notification.util';
+import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'bond-form',
   templateUrl: './bond-form.component.html',
@@ -42,7 +44,9 @@ export class BondFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private notification: NotificationUtil,
   ) {
     this.initRouteParamsListener();
   }
@@ -205,18 +209,18 @@ export class BondFormComponent implements OnInit {
       bond.TCEAEmisor = this.tasaTCEAEmisor;
       bond.TIRBonista = this.tasaTIRBonista;
       bond.TREABonista = this.tasaTREABonista;
-      this.handleCancel();
+      bond.userId = JSON.parse(localStorage.getItem('userLogged')).id;
 
-      if(localStorage.getItem('listaDeBonos')){
-        var lista = JSON.parse(localStorage.getItem('listaDeBonos'))
-        lista.push(bond);
-        localStorage.setItem('listaDeBonos',JSON.stringify(lista));
-      } else {
-        var lista2 = [bond];
-        localStorage.setItem('listaDeBonos',JSON.stringify(lista2));
-      }
+      this.authService.createBond(bond).subscribe(
+        (response: any) => {
+          this.handleCancel();
+          this.router.navigateByUrl('admin/bonds');
+        },
+        (error: HttpErrorResponse) => {
+          this.notification.error('', 'Error');
+        }
+      );
 
-      this.router.navigateByUrl('admin/bonds');
     } else {
       console.log('invalid form');
     }

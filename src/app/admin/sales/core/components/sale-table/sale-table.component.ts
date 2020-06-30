@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Sale } from 'src/app/admin/shared/models/sale';
 import { CRUD } from 'src/app/core/constants/general.constant';
 import { Subscription } from 'rxjs';
-/* import { SaleService } from 'src/app/core/services/sale.service';
- */import { Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'sale-table',
@@ -18,7 +18,7 @@ export class SaleTableComponent implements OnInit {
   public loading: boolean;
 
   constructor(
-    /* private saleService: SaleService, */
+    private authService: AuthService,
     private router: Router
   ) {
     /* this.saleSubscription = this.saleService.listenerRefreshSaleList()
@@ -37,40 +37,15 @@ export class SaleTableComponent implements OnInit {
 
   getSales()
   {
-   this.sales = localStorage.getItem('listaDeBonos')
-     ? JSON.parse(localStorage.getItem('listaDeBonos'))
-     : [];
-
-
-    /* this.loading = true; */
-    /*this.sales = [
-      {
-        id:1,
-        valorComercial: '3000',
-        frecuenciaPago: 'Trimestral',
-        montoTasa:'5.00%',
-        tasaTIRBonista: '3.70%',
-        tasaTCEAEmisor: '3.80%'
-      },
-      {
-        id:2,
-        valorComercial: '5000',
-        frecuenciaPago: 'Cuatrimestral',
-        montoTasa:'7.00%',
-        tasaTIRBonista: '5.10%',
-        tasaTCEAEmisor: '4.40%'
-      }
-    ]
- */
-    /* this.saleService.readSales().subscribe(
+    this.authService.getBondsByUser().subscribe(
       (response: any)=>{
         this.loading = false;
-        this.sales = response.data;
+        this.sales = response;
       },
       (error: any)=>{
         this.loading = false;
       }
-    ) */
+    )
   }
 
   ngOnInit() {
