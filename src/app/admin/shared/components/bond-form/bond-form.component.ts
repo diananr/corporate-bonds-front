@@ -205,8 +205,17 @@ export class BondFormComponent implements OnInit {
       bond.TCEAEmisor = this.tasaTCEAEmisor;
       bond.TIRBonista = this.tasaTIRBonista;
       bond.TREABonista = this.tasaTREABonista;
-      console.log('bono', bond);
       this.handleCancel();
+
+      if(localStorage.getItem('listaDeBonos')){
+        var lista = JSON.parse(localStorage.getItem('listaDeBonos'))
+        lista.push(bond);
+        localStorage.setItem('listaDeBonos',JSON.stringify(lista));
+      } else {
+        var lista2 = [bond];
+        localStorage.setItem('listaDeBonos',JSON.stringify(lista2));
+      }
+
       this.router.navigateByUrl('admin/bonds');
     } else {
       console.log('invalid form');
