@@ -123,7 +123,7 @@
 		<div class="text-right">
 			<button type="button" nz-button [nzType]="'default'"
 				(click)="reset()" style="margin-right: 15px;">Limpiar</button>
-			<button type="submit" nz-button [nzType]="'primary'">
+			<button type="submit" nz-button [nzType]="'primary'" [disabled]="bondFG.invalid">
 				<span *ngIf="method == 'create' && !loading">Calcular flujo</span>
 				<span *ngIf="method == 'update' && !loading">Editar flujo</span>
 			</button>
