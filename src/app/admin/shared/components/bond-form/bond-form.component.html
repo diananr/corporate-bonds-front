@@ -14,6 +14,7 @@
 				<nz-form-label>Método de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="metodoPago">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option nzLabel="Francés" nzValue="Frances"></nz-option>
 					</nz-select>
 				</nz-form-control>
@@ -22,6 +23,7 @@
 				<nz-form-label>Tipo de moneda</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoMoneda">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option nzLabel="Soles" nzValue="PEN"></nz-option>
 						<nz-option nzLabel="Dólares" nzValue="USD"></nz-option>
 						<nz-option nzLabel="Euros" nzValue="EUR"></nz-option>
@@ -30,28 +32,29 @@
 			</nz-form-item>
 		</div>
 		<div class="flex-row-layout jc-space-between flex-wrap">
-			<nz-form-item style="flex-grow: 1">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
-					<input nz-input formControlName="valorNominal"/>
+					<input nz-input formControlName="valorNominal" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 1">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Valor Comercial</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="valorComercial"/>
+					<input nz-input formControlName="valorComercial" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 1">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>N° de Años</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="numAnios"/>
+					<input nz-input formControlName="numAnios" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 12">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Tipo de Año</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoAnio">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option nzLabel="Ordinario" nzValue="360"></nz-option>
 						<nz-option nzLabel="Exacto" nzValue="365"></nz-option>
 					</nz-select>
@@ -59,66 +62,68 @@
 			</nz-form-item>
 		</div>
 		<div class="flex-row-layout jc-space-between flex-wrap">
-			<nz-form-item style="flex-grow: 7">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Frecuencia de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="frecuenciaPago">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option *ngFor="let opt of tipoDeFrecuencias"
 							[nzLabel]="opt.label" [nzValue]="opt.value"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 7">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Tipo de tasa</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoTasa">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option nzLabel="Efectiva" nzValue="Efectiva"></nz-option>
 						<nz-option nzLabel="Nominal" nzValue="Nominal"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 1">
-				<nz-form-label>Valor de la tasa (%)</nz-form-label>
+			<nz-form-item style="width: 25%">
+				<nz-form-label>Tasa de Interés (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="montoTasa"/>
+					<input nz-input formControlName="montoTasa" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="flex-grow: 1">
-				<nz-form-label>Tasa descontada (%)</nz-form-label>
+			<nz-form-item style="width: 25%">
+				<nz-form-label>Tasa Descontada (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="tasaDescontada"/>
+					<input nz-input formControlName="tasaDescontada" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 		</div>
 		<div class="flex-row-layout jc-space-between flex-wrap">
-			<nz-form-item>
+			<nz-form-item style="width: 20%">
 				<nz-form-label>Prima (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="prima"/>
+					<input nz-input formControlName="prima" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="width: 20%">
 				<nz-form-label>Estructuración (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="estructuracion"/>
+					<input nz-input formControlName="estructuracion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="width: 20%">
 				<nz-form-label>Colocacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="colocacion"/>
+					<input nz-input formControlName="colocacion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="width: 20%">
 				<nz-form-label>Flotacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
-					<input nz-input formControlName="flotacion"/>
+					<input nz-input formControlName="flotacion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="width: 20%">
 				<nz-form-label>CAVALI (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
-					<input nz-input formControlName="cavali"/>
+					<input nz-input formControlName="cavali" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
     	</div>
@@ -207,7 +212,7 @@
   <div class="modal-content">
     <div>
 		<form nz-form [nzLayout]="'vertical'" [formGroup]="saveBondFG" (ngSubmit)="saveBond()">
-			<nz-form-item style="flex-grow: 1">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Escribe un nombre</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
 					<input nz-input formControlName="nameBond"/>

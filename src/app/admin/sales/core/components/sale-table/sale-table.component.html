@@ -10,6 +10,7 @@
 			<thead>
 				<tr>
 					<th>Nombre</th>
+					<th>Moneda</th>
 					<th>Valor Comercial</th>
 					<th>Frecuencia de Pago</th>
 					<th>Tasa (%)</th>
@@ -20,6 +21,7 @@
 			<tbody>
 				<tr *ngFor="let data of saleTable.data">
 					<td>{{data.name}}</td>
+					<td>{{data.tipoMoneda}}</td>
 					<td>{{data.valorComercial}}</td>
 					<td>{{data.frecuenciaPago}}</td>
 					<td>{{data.montoTasa}}</td>
