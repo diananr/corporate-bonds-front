@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "bonds-front"
+  "defaultProject": "bonds-front",
+  "cli": {
+    "analytics": "2313a30b-7635-4d64-a06b-a9a770e62542"
+  }
 }
