@@ -14,7 +14,8 @@ import {
   NzInputNumberModule,
   NzSpinModule,
   NzTimePickerModule,
-  NzTabsModule
+  NzTabsModule,
+  NzToolTipModule,
 } from 'ng-zorro-antd';
 
 import { NzIconModule, NZ_ICONS } from 'ng-zorro-antd/icon';
@@ -31,6 +32,7 @@ import {
   DownOutline,
   CameraOutline,
   SmallDashOutline,
+  InfoCircleOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons: IconDefinition[] = [
@@ -45,6 +47,7 @@ const icons: IconDefinition[] = [
   DownOutline,
   CameraOutline,
   SmallDashOutline,
+  InfoCircleOutline
 ];
 
 
@@ -66,7 +69,8 @@ const icons: IconDefinition[] = [
     NzInputNumberModule,
     NzSpinModule,
     NzTimePickerModule,
-    NzTabsModule
+    NzTabsModule,
+    NzToolTipModule
   ],
   exports:[
     NzFormModule,
@@ -83,7 +87,8 @@ const icons: IconDefinition[] = [
     NzInputNumberModule,
     NzSpinModule,
     NzTimePickerModule,
-    NzTabsModule
+    NzTabsModule,
+    NzToolTipModule
   ],
   providers: [
     { provide: NZ_ICONS, useValue: icons }

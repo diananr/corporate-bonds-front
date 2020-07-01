@@ -51,7 +51,11 @@
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item style="width: 25%">
-				<nz-form-label>Tipo de Año</nz-form-label>
+				<nz-form-label>Tipo de Año
+					<span nz-tooltip nzTooltipTitle="Un año ordinario tiene 360 días y un año exacto 365 días.">
+						<i nz-icon nzType="info-circle" nzTheme="outline"></i>
+					</span>
+				</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoAnio">
 						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
@@ -71,24 +75,28 @@
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item style="width: 25%">
-				<nz-form-label>Capitalización</nz-form-label>
-				<nz-form-control nzErrorTip="Please select type!">
-					<nz-select nzShowSearch nzAllowClear formControlName="capitalizacion">
-						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
-						<nz-option *ngFor="let opt of tipoDeCapitalizacion"
-							[nzLabel]="opt.label" [nzValue]="opt.value"></nz-option>
-					</nz-select>
-				</nz-form-control>
-			</nz-form-item>
-		</div>
-		<div class="flex-row-layout jc-space-between flex-wrap">
-			<nz-form-item style="width: 25%">
 				<nz-form-label>Tipo de tasa</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoTasa">
 						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
 						<nz-option nzLabel="Efectiva" nzValue="Efectiva"></nz-option>
 						<nz-option nzLabel="Nominal" nzValue="Nominal"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+		</div>
+		<div class="flex-row-layout jc-space-between flex-wrap">
+			<nz-form-item style="width: 25%">
+				<nz-form-label>Capitalización
+					<span nz-tooltip nzTooltipTitle="Disponible para tipo de tasa nominal">
+						<i nz-icon nzType="info-circle" nzTheme="outline"></i>
+					</span>
+				</nz-form-label>
+				<nz-form-control nzErrorTip="Please select type!">
+					<nz-select nzShowSearch nzAllowClear formControlName="capitalizacion" [nzDisabled]="bondFG.value.tipoTasa == 'Efectiva'">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
+						<nz-option *ngFor="let opt of tipoDeCapitalizacion"
+							[nzLabel]="opt.label" [nzValue]="opt.value"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
@@ -119,13 +127,13 @@
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item style="width: 25%">
-				<nz-form-label>Colocacion (%)</nz-form-label>
+				<nz-form-label>Colocación (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<input nz-input formControlName="colocacion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item style="width: 25%">
-				<nz-form-label>Flotacion (%)</nz-form-label>
+				<nz-form-label>Flotación (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="flotacion" min="0" type="number"/>
 				</nz-form-control>
