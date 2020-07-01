@@ -195,14 +195,30 @@
 				<tbody>
 					<tr *ngFor="let data of saleTable.data,let i=index">
 						<td>{{i}}</td>
-						<td>{{data.valorNominal | number: '1.2-2'}}</td>
-						<td>{{data.costosInicialesEmisor | number: '1.2-2'}}</td>
-						<td>{{data.prima | number: '1.2-2'}}</td>
-						<td>{{data.cupon | number: '1.2-2'}}</td>
-						<td>{{data.cuota | number: '1.2-2'}}</td>
-						<td>{{data.amortizacion | number: '1.2-2'}}</td>
-						<td>{{data.flujoEmisor | number: '1.2-2'}}</td>
-						<td>{{data.flujoBonista | number: '1.2-2'}}</td>
+						<td [ngClass]="{'red': data.valorNominal < 0, 'blue': data.valorNominal >= 0}">
+							{{data.valorNominal | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.costosInicialesEmisor < 0, 'blue': data.costosInicialesEmisor >= 0}">
+							{{data.costosInicialesEmisor | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.prima < 0, 'blue': data.prima >= 0}">
+							{{data.prima | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.cupon < 0, 'blue': data.cupon >= 0}">
+							{{data.cupon | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.cuota < 0, 'blue': data.cuota >= 0}">
+							{{data.cuota | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.amortizacion < 0, 'blue': data.amortizacion >= 0}">
+							{{data.amortizacion | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.flujoEmisor < 0, 'blue': data.flujoEmisor >= 0}">
+							{{data.flujoEmisor | number: '1.2-2'}}
+						</td>
+						<td [ngClass]="{'red': data.flujoBonista < 0, 'blue': data.flujoBonista >= 0}">
+							{{data.flujoBonista | number: '1.2-2'}}
+						</td>
 					</tr>
 				</tbody>
 			</nz-table>
