@@ -1,32 +1,34 @@
 <div class="card">
-	<div class="flex-row-layout jc-space-between">
-		<div></div>
-		<div>
-			<button nz-button [nzType]="'default'" routerLink="/admin" (click)="showModal()">Registrar Bono</button>
-		</div>
-  	</div>
 	<div>
 		<nz-table #saleTable nzSize="middle" [nzData]="sales" [nzLoading]="loading">
 			<thead>
 				<tr>
 					<th>Nombre</th>
 					<th>Moneda</th>
-					<th>Valor Comercial</th>
-					<th>Frecuencia de Pago</th>
-					<th>Tasa (%)</th>
-					<th>TIR Bonista</th>
+					<th>V. Nominal</th>
+					<th>V. Comercial</th>
+					<th>N° años</th>
+					<th>Frecuencia</th>
+					<th>Tasa Interés</th>
+					<th>TIR Emisor</th>
 					<th>TCEA Emisor</th>
+					<th>TIR Bonista</th>
+					<th>TREA Bonista</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let data of saleTable.data">
 					<td>{{data.name}}</td>
 					<td>{{data.tipoMoneda}}</td>
-					<td>{{data.valorComercial}}</td>
-					<td>{{data.frecuenciaPago}}</td>
-					<td>{{data.montoTasa}}</td>
-					<td>{{data.TIRBonista}}</td>
-					<td>{{data.TCEAEmisor}}</td>
+					<td>{{data.valorNominal | number: '1.2-2'}}</td>
+					<td>{{data.valorComercial | number: '1.2-2'}}</td>
+					<td>{{data.numAnios}}</td>
+					<td>{{data.frecuenciaPago}} días</td>
+					<td>{{data.montoTasa | number: '1.2-2'}} %</td>
+					<td>{{data.TIREmisor | number: '1.2-2'}} %</td>
+					<td>{{data.TCEAEmisor | number: '1.2-2'}} %</td>
+					<td>{{data.TIRBonista | number: '1.2-2'}} %</td>
+					<td>{{data.TREABonista | number: '1.2-2'}} %</td>
 				</tr>
 			</tbody>
 		</nz-table>

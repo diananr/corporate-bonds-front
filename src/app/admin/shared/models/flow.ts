@@ -5,8 +5,6 @@ export class Flow {
     flujoBonista: number;
     cuponExcel: number;
     prima: number;
-
-
     valorNominal: number;
     valorComercial: number;
     cupon: number;
@@ -21,7 +19,6 @@ export class Flow {
         this.flujoBonista = 0;
         this.cuponExcel = 0;
         this.prima = 0;
-
         this.valorNominal = 0;
         this.valorComercial = 0;
         this.cupon = 0;

@@ -16,7 +16,8 @@ import { SaleTableComponent } from './components/sale-table/sale-table.component
   ],
   exports: [
     SaleFormComponent,
-    SaleTableComponent
+    SaleTableComponent,
+    AdminSharedModule
   ]
 })
 export class CoreModule { }

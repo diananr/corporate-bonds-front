@@ -10,7 +10,7 @@
 	<form nz-form [nzLayout]="'vertical'"
 	[formGroup]="bondFG" (ngSubmit)="onSubmit()">
 		<div class="flex-row-layout">
-			<nz-form-item>
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Método de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="metodoPago">
@@ -19,7 +19,7 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item>
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Tipo de moneda</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<nz-select nzShowSearch nzAllowClear formControlName="tipoMoneda">
@@ -30,8 +30,6 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-		</div>
-		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="width: 25%">
 				<nz-form-label>Valor Nominal</nz-form-label>
 				<nz-form-control nzErrorTip="Please input title">
@@ -44,6 +42,8 @@
 					<input nz-input formControlName="valorComercial" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
+		</div>
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="width: 25%">
 				<nz-form-label>N° de Años</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
@@ -60,8 +60,6 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-		</div>
-		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="width: 25%">
 				<nz-form-label>Frecuencia de Pago</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
@@ -72,6 +70,18 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
+			<nz-form-item style="width: 25%">
+				<nz-form-label>Capitalización</nz-form-label>
+				<nz-form-control nzErrorTip="Please select type!">
+					<nz-select nzShowSearch nzAllowClear formControlName="capitalizacion">
+						<nz-option nzLabel="Selecciona" nzValue="" disabled></nz-option>
+						<nz-option *ngFor="let opt of tipoDeCapitalizacion"
+							[nzLabel]="opt.label" [nzValue]="opt.value"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+		</div>
+		<div class="flex-row-layout jc-space-between flex-wrap">
 			<nz-form-item style="width: 25%">
 				<nz-form-label>Tipo de tasa</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
@@ -94,33 +104,33 @@
 					<input nz-input formControlName="tasaDescontada" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-		</div>
-		<div class="flex-row-layout jc-space-between flex-wrap">
-			<nz-form-item style="width: 20%">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Prima (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<input nz-input formControlName="prima" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="width: 20%">
+		</div>
+		<div class="flex-row-layout jc-space-between flex-wrap">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Estructuración (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="estructuracion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="width: 20%">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Colocacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<input nz-input formControlName="colocacion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="width: 20%">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>Flotacion (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please input previewImage">
 					<input nz-input formControlName="flotacion" min="0" type="number"/>
 				</nz-form-control>
 			</nz-form-item>
-			<nz-form-item style="width: 20%">
+			<nz-form-item style="width: 25%">
 				<nz-form-label>CAVALI (%)</nz-form-label>
 				<nz-form-control nzErrorTip="Please select type!">
 					<input nz-input formControlName="cavali" min="0" type="number"/>
@@ -172,27 +182,27 @@
 				<thead>
 					<tr>
 						<th>N°</th>
-						<th>Cupon Excel</th>
+						<th>V. Nominal</th>
 						<th>C.I. Emisor</th>
 						<th>Prima</th>
-						<th>Flujo Emisor</th>
-						<th>Flujo Bonista</th>
-						<th>Cupon Clase</th>
+						<th>Cupon</th>
 						<th>Cuota</th>
 						<th>Amortizacion</th>
+						<th>Flujo Emisor</th>
+						<th>Flujo Bonista</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let data of saleTable.data,let i=index">
 						<td>{{i}}</td>
-						<td>{{data.cuponExcel | number: '1.2-2'}}</td>
+						<td>{{data.valorNominal | number: '1.2-2'}}</td>
 						<td>{{data.costosInicialesEmisor | number: '1.2-2'}}</td>
 						<td>{{data.prima | number: '1.2-2'}}</td>
-						<td>{{data.flujoEmisor | number: '1.2-2'}}</td>
-						<td>{{data.flujoBonista | number: '1.2-2'}}</td>
 						<td>{{data.cupon | number: '1.2-2'}}</td>
 						<td>{{data.cuota | number: '1.2-2'}}</td>
 						<td>{{data.amortizacion | number: '1.2-2'}}</td>
+						<td>{{data.flujoEmisor | number: '1.2-2'}}</td>
+						<td>{{data.flujoBonista | number: '1.2-2'}}</td>
 					</tr>
 				</tbody>
 			</nz-table>
@@ -210,20 +220,18 @@
     <h4 class="text-center" style="margin:0">¡En hora buena!</h4>
   </div>
   <div class="modal-content">
-    <div>
-		<form nz-form [nzLayout]="'vertical'" [formGroup]="saveBondFG" (ngSubmit)="saveBond()">
-			<nz-form-item style="width: 25%">
-				<nz-form-label>Escribe un nombre</nz-form-label>
-				<nz-form-control nzErrorTip="Please input title">
-					<input nz-input formControlName="nameBond"/>
-				</nz-form-control>
-			</nz-form-item>
-			<div class="text-right">
-				<button type="submit" nz-button [nzType]="'primary'">
-					<span>Guardar</span>
-				</button>
-			</div>
-		</form>
-	</div>
+	<form nz-form [nzLayout]="'vertical'" [formGroup]="saveBondFG" (ngSubmit)="saveBond()">
+		<nz-form-item>
+			<nz-form-label>Escribe un nombre</nz-form-label>
+			<nz-form-control nzErrorTip="Please input title">
+				<input nz-input formControlName="nameBond"/>
+			</nz-form-control>
+		</nz-form-item>
+		<div class="text-right">
+			<button type="submit" nz-button [nzType]="'primary'">
+				<span>Guardar</span>
+			</button>
+		</div>
+	</form>
   </div>
 </nz-modal>

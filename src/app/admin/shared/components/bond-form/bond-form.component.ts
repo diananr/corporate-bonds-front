@@ -32,13 +32,22 @@ export class BondFormComponent implements OnInit {
   public isVisible = false;
 
   public tipoDeFrecuencias = [
-    {label: 'Diaria', value: 360},
     {label: 'Mensual', value: 30},
     {label: 'Bimestral', value: 60},
     {label: 'Trimestral', value: 90},
     {label: 'Cuatrimestral', value: 120},
     {label: 'Semestral', value: 180},
-    {label: 'Anual', value: 1},
+    {label: 'Anual', value: 360},
+  ]
+  public tipoDeCapitalizacion = [
+    {label: 'Diaria', value: 1},
+    {label: 'Quincenal', value: 15},
+    {label: 'Mensual', value: 30},
+    {label: 'Bimestral', value: 60},
+    {label: 'Trimestral', value: 90},
+    {label: 'Cuatrimestral', value: 120},
+    {label: 'Semestral', value: 180},
+    {label: 'Anual', value: 360},
   ]
 
   constructor(
@@ -61,6 +70,7 @@ export class BondFormComponent implements OnInit {
       numAnios: [0,[Validators.required]],
       tipoAnio: ['',[Validators.required]],
       frecuenciaPago: [0,[Validators.required]],
+      capitalizacion: ['',[Validators.required]],
       tipoTasa: ['',[Validators.required]],
       montoTasa: [0,[Validators.required]],
       tasaDescontada: [0,[Validators.required]],
@@ -99,14 +109,15 @@ export class BondFormComponent implements OnInit {
     var nTotalDePeriodos = nPeriodosPorAnio * data.numAnios;
 
     var tasaTEA;
+    var tasaTEP;
     if(data.tipoTasa == 'Nominal'){
-      tasaTEA = Math.pow( (1 + (data.montoTasa / 360)),360) - 1
+      var x = 1 + ((data.montoTasa/100)/(Number(data.tipoAnio)/Number(data.capitalizacion)))
+      tasaTEP = Math.pow( x,(Number(data.frecuenciaPago)/Number(data.capitalizacion))) - 1
     } else {
-      tasaTEA = data.montoTasa;
+      tasaTEA = data.montoTasa / 100;
+      tasaTEP = Math.pow(1 + tasaTEA, data.frecuenciaPago / Number(data.tipoAnio)) - 1;
     }
-    tasaTEA = tasaTEA / 100;
 
-    var tasaTEP = Math.pow(1 + tasaTEA, data.frecuenciaPago / Number(data.tipoAnio)) - 1;
     var tasaDiscountP = Math.pow(1 + data.tasaDescontada, data.frecuenciaPago / Number(data.tipoAnio)) - 1;
 
     var costosInicialesEmisor =
@@ -127,19 +138,18 @@ export class BondFormComponent implements OnInit {
 
     for(var i = 1; i <= nTotalDePeriodos; i++){
       var flujo = new Flow();
+
       flujo.valorNominal = i == 1 ? data.valorNominal : this.flowList[i-1].valorNominal - this.flowList[i-1].amortizacion;
-      flujo.cupon = tasaTEP * flujo.valorNominal;
+      flujo.cupon = -(tasaTEP * flujo.valorNominal);
 
       var potencia = Math.pow(1+tasaTEP,nTotalDePeriodos - i + 1);
-      flujo.cuota = flujo.valorNominal * (tasaTEP * potencia / (potencia - 1));
-      flujo.amortizacion = flujo.cuota - flujo.cupon;
+      flujo.cuota = -(flujo.valorNominal * (tasaTEP * potencia / (potencia - 1)));
+      flujo.amortizacion = -(flujo.cuota - flujo.cupon);
 
       flujo.cuponExcel = -data.valorNominal * tasaTEP;
-      if (i==nTotalDePeriodos ) flujo.prima = -data.prima * data.valorNominal / 100;
-      flujo.flujoEmisor = i < nTotalDePeriodos
-        ? flujo.cuponExcel
-        : -data.valorNominal + flujo.cuponExcel + flujo.prima;
-      flujo.flujoBonista = -flujo.flujoEmisor
+      if (i==nTotalDePeriodos ) flujo.prima = -data.prima * flujo.valorNominal / 100;
+      flujo.flujoEmisor = flujo.cuota + flujo.prima;
+      flujo.flujoBonista = -flujo.flujoEmisor;
 
       this.valoresFlujoEmisor.push(-flujo.flujoEmisor);
       this.valoresFlujoBonista.push(flujo.flujoBonista);

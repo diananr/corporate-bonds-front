@@ -2,3 +2,29 @@
     overflow: auto;
     margin: 10px 0;
 }
+
+.card{
+    background-color: white;
+    box-shadow: 0 7px 14px 0 rgb(250, 251, 255), 0 3px 6px 0 rgb(232, 232, 232);
+    padding: 20px;
+
+    .each-card{
+        border-radius: 5px;
+        box-shadow: 0 7px 14px 0 rgb(250, 251, 255), 0 3px 6px 0 rgb(232, 232, 232);
+        background-color: #d0e2ff;
+        padding: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        h5{
+            font-size: 20px;
+        }
+        div{
+            text-align: right;
+            font-size: 22px;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}

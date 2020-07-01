@@ -1,5 +1,10 @@
 <section>
-	<h2>Mis bonos</h2>
+	<div class="flex-row-layout jc-space-between">
+		<h2>Mis bonos</h2>
+		<div>
+			<button nz-button [nzType]="'default'" routerLink="/admin">Registrar Bono</button>
+		</div>
+  	</div>
 	<div>
 		<sale-table></sale-table>
 	</div>
